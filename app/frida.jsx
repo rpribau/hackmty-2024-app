@@ -140,6 +140,7 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     paddingHorizontal: 20,
     paddingTop: 20,
+    
   },
   proposal: {
     fontSize: 20,
@@ -205,6 +206,7 @@ const styles = StyleSheet.create({
     height: 50,
     backgroundColor: '#CD3A32',
     borderRadius: 10,
+    marginBottom: 50,
   },
   Acetar: {
     fontSize: 20,

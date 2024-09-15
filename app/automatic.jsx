@@ -2,7 +2,6 @@ import { View, Text, ScrollView, StyleSheet, Switch, Button, Modal, TouchableOpa
 import React, { useState, useEffect } from 'react';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
-
 const IoTSettings = ({ recommendedTime }) => {
   const [isManualEnabled, setIsManualEnabled] = useState(true);
   const [isAutomaticEnabled, setIsAutomaticEnabled] = useState(false);
@@ -18,7 +17,7 @@ const IoTSettings = ({ recommendedTime }) => {
     if (isAutomaticEnabled && recommendedTime) {
       setSelectedTimeHose1(recommendedTime); // Use the recommended time for hose 1
       setSelectedTimeHose2(recommendedTime);
-      setSelectedTimeHose3();
+      setSelectedTimeHose3(recommendedTime);
     }
   }, [isAutomaticEnabled, recommendedTime]);
 
@@ -77,7 +76,7 @@ const IoTSettings = ({ recommendedTime }) => {
       <View style={styles.timeContainer}>
         <Text style={[styles.timeText, isAutomaticEnabled && styles.disabledText]}>
           {isAutomaticEnabled
-            ? `Se activará a las: ${hoseId === 1 ? recommendedTime : hoseId === 2 ? recommendedTime : recommendedTime}`
+            ? `Se activará a las: 18:00` // Fixed static time
             : `Se activará a las: ${selectedTime}`}
         </Text>
       </View>
