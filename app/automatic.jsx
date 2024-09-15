@@ -3,8 +3,8 @@ import React, { useState, useEffect } from 'react';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
 const IoTSettings = ({ recommendedTime }) => {
-  const [isManualEnabled, setIsManualEnabled] = useState(true);
-  const [isAutomaticEnabled, setIsAutomaticEnabled] = useState(false);
+  const [isManualEnabled, setIsManualEnabled] = useState(false);
+  const [isAutomaticEnabled, setIsAutomaticEnabled] = useState(true);
   const [selectedTimeHose1, setSelectedTimeHose1] = useState('11:10');
   const [selectedTimeHose2, setSelectedTimeHose2] = useState('12:20');
   const [selectedTimeHose3, setSelectedTimeHose3] = useState('13:30');

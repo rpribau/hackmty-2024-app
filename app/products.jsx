@@ -1,14 +1,47 @@
 import { View, Text, ScrollView, StyleSheet, Pressable, Alert, ActivityIndicator } from 'react-native';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Ionicons, AntDesign } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
 
 const API_URL = 'http://10.22.130.241:5005/upload';
+const JSON_API_URL = 'https://jjpg0w5tsl.execute-api.us-east-2.amazonaws.com/getManagement'; // URL del JSON
 
 const Products = () => {
   console.log('Componente Home montado');
   const [isLoading, setIsLoading] = useState(false); // Loading state
   const [isProcessed, setIsProcessed] = useState(false); // State to track if image is processed
+  const [proposalText, setProposalText] = useState(''); // Estado para guardar el texto de la propuesta
+
+const fetchProposalText = async () => {
+  try {
+    console.log('Iniciando fetch para obtener el texto de la propuesta');
+    const response = await fetch(JSON_API_URL);
+
+    // Verifica que la respuesta tenga un estado exitoso
+    if (!response.ok) {
+      throw new Error(`Error en la respuesta de la API: ${response.status}`);
+    }
+
+    const data = await response.json();
+    console.log('Respuesta recibida:', data);
+
+    // Verifica que 'message' esté en los datos
+    if (data && data.message) {
+      setProposalText(data.message);
+    } else {
+      throw new Error('Formato de JSON incorrecto o "message" no encontrado.');
+    }
+
+  } catch (error) {
+    console.error('Error al obtener el texto de la propuesta:', error);
+    setProposalText('Error al cargar la propuesta');
+  }
+};
+
+
+  useEffect(() => {
+    fetchProposalText(); // Cargar el texto de la propuesta al montar el componente
+  }, []);
 
   const openCamera = async () => {
     console.log('Llamada a openCamera');
@@ -136,9 +169,11 @@ const Products = () => {
         </View>
       )}
 
-
       <Text style={styles.proposal}>Propuesta</Text>
-      <View style={styles.ResultsBox} />
+      {/* Mostrar el texto de la propuesta en el cuadro verde */}
+      <View style={styles.ResultsBox}>
+        <Text style={styles.proposalText}>{proposalText}</Text>
+      </View>
 
     </ScrollView>
   );
@@ -227,6 +262,11 @@ const styles = StyleSheet.create({
     height: 190,
     backgroundColor: '#CDE18F',
     borderRadius: 10,
+    padding: 10, // Agregado para espacio interno
+  },
+  proposalText: {
+    fontSize: 16,
+    color: '#333',
   },
 });
 
