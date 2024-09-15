@@ -157,7 +157,7 @@ const IoTSettings = ({ userName = 'Roberto' }) => {
 const styles = StyleSheet.create({
   title: {
     fontSize: 38,
-    marginTop: 15,
+    marginTop: 50,
     textAlign: 'left',
     alignSelf: 'flex-start',
     width: '100%',
