@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Ionicons, AntDesign } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
 
-const API_URL = 'http://10.22.139.44:5000/upload';
+const API_URL = 'http://10.22.130.241:5001/upload';
 
 const Home = () => {
   console.log('Componente Home montado');
