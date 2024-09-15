@@ -16,28 +16,21 @@ const _layout = () => {
             />
 
             <Tabs.Screen
-                name="wallet"
+                name="frida"
                 options={{
-                    title: 'Wallet',
+                    title: 'AI Frida',
                     headerShown: false,
                 }}
             />
 
             <Tabs.Screen
-                name="investments"
+                name="automatic"
                 options={{
-                    title: 'Stocks',
+                    title: 'IoT Settings',
                     headerShown: false,
                 }}
             />
 
-            <Tabs.Screen
-                name="social"
-                options={{
-                    title: 'News',
-                    headerShown: false,
-                }}
-            />
 
         </Tabs>
     )
