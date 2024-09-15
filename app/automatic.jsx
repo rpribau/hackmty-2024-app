@@ -2,26 +2,25 @@ import { View, Text, ScrollView, StyleSheet, Switch, Button, Modal, TouchableOpa
 import React, { useState, useEffect } from 'react';
 import DateTimePicker from '@react-native-community/datetimepicker';
 
-const IoTSettings = ({ userName = 'Roberto' }) => {
+
+const IoTSettings = ({ recommendedTime }) => {
   const [isManualEnabled, setIsManualEnabled] = useState(true);
   const [isAutomaticEnabled, setIsAutomaticEnabled] = useState(false);
-
-  // Store times as strings in HH:MM format
-  const [selectedTimeHose1, setSelectedTimeHose1] = useState('15:00'); // Variable 1 JP
-  const [selectedTimeHose2, setSelectedTimeHose2] = useState('03:00'); // Variable 2 JP
-  const [selectedTimeHose3, setSelectedTimeHose3] = useState('18:30'); // Variable 3 JP
+  const [selectedTimeHose1, setSelectedTimeHose1] = useState('11:10');
+  const [selectedTimeHose2, setSelectedTimeHose2] = useState('12:20');
+  const [selectedTimeHose3, setSelectedTimeHose3] = useState('13:30');
 
   const [showTimePicker, setShowTimePicker] = useState(false);
   const [currentHose, setCurrentHose] = useState(null);
 
   useEffect(() => {
-    // Reset times if switching to automatic mode
-    if (isAutomaticEnabled) {
-      setSelectedTimeHose1('15:00');
-      setSelectedTimeHose2('03:00');
-      setSelectedTimeHose3('18:30');
+    // Set recommendedTime when automatic is enabled
+    if (isAutomaticEnabled && recommendedTime) {
+      setSelectedTimeHose1(recommendedTime); // Use the recommended time for hose 1
+      setSelectedTimeHose2(recommendedTime);
+      setSelectedTimeHose3(recommendedTime);
     }
-  }, [isAutomaticEnabled]);
+  }, [isAutomaticEnabled, recommendedTime]);
 
   const toggleManualSwitch = () => {
     if (!isManualEnabled) {
@@ -77,7 +76,9 @@ const IoTSettings = ({ userName = 'Roberto' }) => {
       />
       <View style={styles.timeContainer}>
         <Text style={[styles.timeText, isAutomaticEnabled && styles.disabledText]}>
-          {isAutomaticEnabled ? `Se activará a las: ${hoseId === 1 ? '15:00' : hoseId === 2 ? '03:00' : '18:30'}` : `Se activará a las: ${selectedTime}`}
+          {isAutomaticEnabled
+            ? `Se activará a las: ${hoseId === 1 ? recommendedTime : hoseId === 2 ? recommendedTime : recommendedTime}`
+            : `Se activará a las: ${selectedTime}`}
         </Text>
       </View>
     </View>

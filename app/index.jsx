@@ -155,6 +155,8 @@ const styles = StyleSheet.create({
     marginTop: 50,
     textAlign: 'left',
     alignSelf: 'flex-start',
+    fontWeight: 'bold',
+
     width: '50%',
   },
   subtitle: {

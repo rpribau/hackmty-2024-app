@@ -1,13 +1,21 @@
-import { View, Text, ScrollView, StyleSheet, Button } from 'react-native';
+import { View, Text, ScrollView, StyleSheet } from 'react-native';
 import React, { useState, useEffect } from 'react';
+import IoTSettings from './automatic'
+<IoTSettings recommendedTime={recommendedTime} />
 
 const Frida = ({ userName = 'Roberto' }) => {
   const [data, setData] = useState(null);
+  const [recommendedTime, setRecommendedTime] = useState(null); // Nueva variable de estado
 
   useEffect(() => {
-    fetch('https://example.com/data.json') // URL URL URL URL URL URL URL URL URL URL URL URL URL URL URL 
+    fetch('https://jjpg0w5tsl.execute-api.us-east-2.amazonaws.com/getCrops') // Reemplaza con tu URL real de API
       .then(response => response.json())
-      .then(json => setData(json))
+      .then(json => {
+        setData(json);
+        if (json.recommended_time) {
+          setRecommendedTime(json.recommended_time); // Guarda el valor de recommended_time
+        }
+      })
       .catch(error => console.error('Error fetching JSON:', error));
   }, []);
 
@@ -15,7 +23,14 @@ const Frida = ({ userName = 'Roberto' }) => {
     <ScrollView contentContainerStyle={styles.scrollContainer}>
       <Text style={styles.title}>AI FRIDA</Text>
       <Text style={styles.proposal}>Propuesta</Text>
-      <View style={styles.ResultsBox} />
+      <View style={styles.ResultsBox}>
+        {data && <Text style={styles.bodyText}>{data.body}</Text>}
+      </View>
+      {recommendedTime && (
+        <Text style={styles.recommendedTimeText}>
+          Hora recomendada para riego: {recommendedTime}
+        </Text>
+      )}
       <Text style={styles.imageSimilarities}>Similitudes de imagen</Text>
       <View style={styles.ImageBox} />
       <Text style={styles.acceptOrDeclineChanges}>¿Deseas aplicar estos cambios?</Text>
@@ -23,11 +38,6 @@ const Frida = ({ userName = 'Roberto' }) => {
       <View style={styles.DeclineBox} />
       <Text style={styles.Acetar}>Aceptar</Text>
       <Text style={styles.Declinar}>Declinar</Text>
-      {data && (
-        <View>
-          <Text>{JSON.stringify(data)}</Text>
-        </View>
-      )}
     </ScrollView>
   );
 };
@@ -57,9 +67,20 @@ const styles = StyleSheet.create({
   ResultsBox: {
     marginTop: 15,
     width: '100%',
-    height: 80,
+    height: 100, 
     backgroundColor: '#CDE18F',
     borderRadius: 10,
+    padding: 10,
+  },
+  bodyText: {
+    fontSize: 16,
+    color: 'black',
+  },
+  recommendedTimeText: {
+    fontSize: 18,
+    marginTop: 15,
+    fontWeight: 'bold',
+    color: '#333',
   },
   imageSimilarities: {
     fontSize: 20,
