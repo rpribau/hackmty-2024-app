@@ -31,6 +31,14 @@ const _layout = () => {
                 }}
             />
 
+            <Tabs.Screen
+                name="products"
+                options={{
+                    title: 'Products',
+                    headerShown: false,
+                }}
+            />
+
 
         </Tabs>
     )
