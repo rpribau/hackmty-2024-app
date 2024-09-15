@@ -6,7 +6,6 @@ import * as ImagePicker from 'expo-image-picker';
 const API_URL = 'http://10.22.139.44:5000/upload';
 
 const Home = () => {
-  console.log('Componente Home montado');
   const [isLoading, setIsLoading] = useState(false); // Loading state
   const [isProcessed, setIsProcessed] = useState(false); // State to track if image is processed
 
@@ -107,7 +106,6 @@ const Home = () => {
     }
   };
 
-  console.log('Renderizando componente Home');
   return (
     <ScrollView contentContainerStyle={styles.scrollContainer}>
       <Text style={styles.title}>¡Hola, Roberto!</Text>

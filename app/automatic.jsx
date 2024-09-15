@@ -18,7 +18,7 @@ const IoTSettings = ({ recommendedTime }) => {
     if (isAutomaticEnabled && recommendedTime) {
       setSelectedTimeHose1(recommendedTime); // Use the recommended time for hose 1
       setSelectedTimeHose2(recommendedTime);
-      setSelectedTimeHose3(recommendedTime);
+      setSelectedTimeHose3();
     }
   }, [isAutomaticEnabled, recommendedTime]);
 

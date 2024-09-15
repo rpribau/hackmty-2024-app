@@ -115,12 +115,12 @@ const Products = () => {
       <Text style={styles.lastUpdate}>Ultima actualización: 13/09/2024 - 19:00</Text>
       <Text>Estado: <Text style={{ color: 'red', fontWeight: 'bold' }}>Pendiente</Text></Text>
 
-
       <Pressable style={styles.buttonGallery} onPress={openGallery}>
         <Ionicons name="images" size={24} color="white" />
         <Text style={styles.openGalleryText}>Abrir Galería</Text>
       </Pressable>
 
+      <Text style={styles.subtitle}>Status:</Text>
       {/* Indicador de carga */}
       {isLoading && (
         <View>
@@ -136,8 +136,21 @@ const Products = () => {
         </View>
       )}
 
+      {/* Indicador de carga */}
+      {isLoading && (
+        <View>
+          <ActivityIndicator size="large" color="#0000ff" />
+        </View>
+      )}
+
+
       <Text style={styles.proposal}>Propuesta</Text>
       <View style={styles.ResultsBox} />
+
+
+
+
+
     </ScrollView>
   );
 };
@@ -176,6 +189,21 @@ const styles = StyleSheet.create({
     width: '100%',
   },
 
+  subtitle: {
+    fontSize: 20,
+    marginTop: -10,
+    textAlign: 'left',
+    alignSelf: 'flex-start',
+    width: '100%',
+    fontWeight: 'bold',
+  },
+  subtitle2: {
+    fontSize: 20,
+    marginTop: 20,
+    textAlign: 'center',
+    width: '100%',
+  },
+
   buttonGallery: {
     alignItems: 'center',
     justifyContent: 'center',
@@ -198,7 +226,7 @@ const styles = StyleSheet.create({
 
   proposal: {
     fontSize: 20,
-    marginTop: -10,
+    marginTop: 70,
     textAlign: 'left',
     alignSelf: 'flex-start',
     width: '100%',
