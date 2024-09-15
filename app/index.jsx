@@ -2,12 +2,17 @@ import { View, Text, ScrollView, StyleSheet, Pressable, Alert, ActivityIndicator
 import React, { useState } from 'react';
 import { Ionicons, AntDesign } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
+import { useNavigation } from '@react-navigation/native';
 
 const API_URL = 'http://10.22.130.241:5001/upload';
 
 const Home = () => {
   const [isLoading, setIsLoading] = useState(false); // Loading state
-  const [isProcessed, setIsProcessed] = useState(false); // State to track if image is processed
+  const [isProcessed, setIsProcessed] = useState(false); // State to track if the image is processed
+  const [imagePath, setImagePath] = useState(''); // State to hold the processed image path
+  const [detectionsPath, setDetectionsPath] = useState(''); // State to hold the detections JSON path
+  
+  const navigation = useNavigation();
 
   const openCamera = async () => {
     console.log('Llamada a openCamera');
@@ -93,7 +98,10 @@ const Home = () => {
 
       if (response.ok) {
         setIsProcessed(true);
+        setImagePath(data.image_path); // Set the processed image path
+        setDetectionsPath(data.detections_path); // Set the detections JSON path
         console.log('Imagen procesada y guardada exitosamente');
+        navigation.navigate('Results', { imagePath: data.image_path, detectionsPath: data.detections_path });
       } else {
         console.log('Error en la respuesta de la API', data.error);
         Alert.alert('Error', data.error || 'Error al procesar la imagen.');
@@ -109,8 +117,8 @@ const Home = () => {
   return (
     <ScrollView contentContainerStyle={styles.scrollContainer}>
       <Text style={styles.title}>¡Hola, Roberto!</Text>
-      <Text style={styles.subtitle}>Crear un push de imagenes.</Text>
-      <Text>Ultima actualización: 13/09/2024 - 19:00</Text>
+      <Text style={styles.subtitle}>Crear un push de imágenes.</Text>
+      <Text>Última actualización: 13/09/2024 - 19:00</Text>
       <Text>Estado: <Text style={{ color: 'red', fontWeight: 'bold' }}>Pendiente</Text></Text>
 
       <Pressable style={styles.buttonCamera} onPress={openCamera}>
@@ -124,14 +132,12 @@ const Home = () => {
       </Pressable>
 
       <Text style={styles.subtitle}>Status:</Text>
-      {/* Indicador de carga */}
       {isLoading && (
         <View>
           <ActivityIndicator size="large" color="#0000ff" />
         </View>
       )}
 
-      {/* Mensaje de éxito */}
       {isProcessed && (
         <View style={{ alignItems: 'center' }}>
           <AntDesign name="checkcircle" size={54} color="green" />
@@ -154,7 +160,6 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     alignSelf: 'flex-start',
     fontWeight: 'bold',
-
     width: '50%',
   },
   subtitle: {
