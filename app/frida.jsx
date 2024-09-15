@@ -2,12 +2,12 @@ import { View, Text } from 'react-native'
 import React from 'react'
 import ColorList from '../components/ColorList'
 
-const Investments = () => {
+const Wallet = () => {
   return (
     <View>
-      <ColorList color='#586875'/>
+      <Text>Wallet</Text>
     </View>
   )
 }
 
-export default Investments
+export default Wallet

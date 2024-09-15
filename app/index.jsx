@@ -7,7 +7,8 @@ const Home = ({userName = 'Roberto'}) => {
   return (
     <ScrollView contentContainerStyle={styles.scrollContainer}>
       <Text style={styles.title}>¡Hola, {userName}!</Text>
-      <ColorList color='#BDD6D2'/>
+      <Text style={styles.subtitle}>Ingresar fotografias:</Text>
+
     </ScrollView>
   )
 }
@@ -20,11 +21,18 @@ const styles = StyleSheet.create({
   },
   title: {
       fontSize: 38,
-      
       marginTop: 50,
       textAlign: 'left',
       alignSelf: 'flex-start',
       width: '50%',
+  },
+  subtitle: {
+      fontSize: 20,
+      marginTop: 20,
+      textAlign: 'left',
+      alignSelf: 'flex-start',
+      width: '100%',
+      fontWeight: 'bold',
   },
 })
 
