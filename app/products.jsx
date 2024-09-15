@@ -1,14 +1,16 @@
-import { View, Text, ScrollView, StyleSheet, Pressable, Alert, ActivityIndicator } from 'react-native';
+import { View, Text, ScrollView, StyleSheet, Pressable, Alert, ActivityIndicator, Image } from 'react-native';
 import React, { useState } from 'react';
 import { Ionicons, AntDesign } from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
 
 const API_URL = 'http://10.22.130.241:5005/upload';
+const IMAGE_PATH = 'http://10.22.130.241:5005/images/detectionsMerch.jpg';
 
 const Products = () => {
   console.log('Componente Home montado');
   const [isLoading, setIsLoading] = useState(false); // Loading state
   const [isProcessed, setIsProcessed] = useState(false); // State to track if image is processed
+  const [imagePath, setImagePath] = useState(''); // State to store the image path
 
   const openCamera = async () => {
     console.log('Llamada a openCamera');
@@ -94,6 +96,7 @@ const Products = () => {
 
       if (response.ok) {
         setIsProcessed(true);
+        setImagePath(`${IMAGE_PATH}?${new Date().getTime()}`); // Actualiza la URL para refrescar la imagen
         console.log('Imagen procesada y guardada exitosamente');
       } else {
         console.log('Error en la respuesta de la API', data.error);
@@ -136,10 +139,14 @@ const Products = () => {
         </View>
       )}
 
-
-      <Text style={styles.proposal}>Propuesta</Text>
-      <View style={styles.ResultsBox} />
-
+      <Text style={styles.proposal}>Detección de imagen</Text>
+      <View style={styles.ResultsBox}>
+        {isProcessed && imagePath ? (
+          <Image source={{ uri: imagePath }} style={styles.image} />
+        ) : (
+          <Text>No image available</Text>
+        )}
+      </View>
     </ScrollView>
   );
 };
@@ -227,6 +234,11 @@ const styles = StyleSheet.create({
     height: 190,
     backgroundColor: '#CDE18F',
     borderRadius: 10,
+  },
+  image: {
+    width: '100%',
+    height: '100%',
+    resizeMode: 'contain', // Adjust this as needed
   },
 });
 
