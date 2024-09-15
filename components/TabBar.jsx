@@ -4,7 +4,7 @@
   import TabBarButton from './TabBarButton';
 
   const TabBar = ({ state, descriptors, navigation }) => {
-      const primaryColor = '#0891b2';
+      const primaryColor = '#689940';
       const greyColor = '#222';
 
       return (
