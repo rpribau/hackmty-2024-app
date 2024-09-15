@@ -136,20 +136,9 @@ const Products = () => {
         </View>
       )}
 
-      {/* Indicador de carga */}
-      {isLoading && (
-        <View>
-          <ActivityIndicator size="large" color="#0000ff" />
-        </View>
-      )}
-
 
       <Text style={styles.proposal}>Propuesta</Text>
       <View style={styles.ResultsBox} />
-
-
-
-
 
     </ScrollView>
   );
@@ -226,7 +215,7 @@ const styles = StyleSheet.create({
 
   proposal: {
     fontSize: 20,
-    marginTop: 70,
+    marginTop: 30,
     textAlign: 'left',
     alignSelf: 'flex-start',
     width: '100%',
