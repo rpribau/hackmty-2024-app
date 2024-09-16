@@ -1,50 +1,36 @@
-# Welcome to your Expo app 👋
+# AgriSense 🌱
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A tool with AI for plant detection and care could leverage technologies such as computer vision and machine learning to identify and monitor plant health.
 
-## Get started
+![Copy of AgriSense](https://github.com/user-attachments/assets/25abb697-e59e-4d5b-8a42-028e84674290)
 
-1. Install dependencies
+## Problematic 🔗
 
-   ```bash
-   npm install
-   ```
+The agricultural sector is one of the most critical industries we rely on, as it forms the basis of our ability to feed the global population. However, the processes behind it are often complex and costly, especially considering that more than **70% of the world's freshwater is allocated to agriculture**. This heavy water usage exacerbates the ongoing global water crises and contributes directly to climate change. In the end, this value chain cna get really expensive and consuming in the long term. According to the INEGI, at least in Mexico, in 2023 they lost 305,000 USD in all this value chain. This value includes:
 
-2. Start the app
+- Costs of damage
+- Production losses
+- Fertilizers
+- Plagues and plant deseases
+- Transportation
 
-   ```bash
-    npx expo start
-   ```
+## Our solution 💡
 
-In the output, you'll find options to open the app in a
+We have developed an advanced farm management app that integrates a trained YOLO object detection model to monitor plant health. The model generates a JSON file, which is processed by a trained OpenAI LLM to provide actionable insights, recommendations, and instructions. Additionally, the app manages IoT devices, such as water pipes, to automate and optimize the irrigation process, ensuring efficient water usage and crop management.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+Our app not only manages farm operations and plant health using AI, but it also evaluates **the quality of fruits and vegetables** when they are ready for packaging. The app can determine which client the product should be sold to based on quality, or provide suggestions for handling products that don’t meet the required standards.
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## Tech Stack 💻
 
-## Get a fresh project
+### [Back-end](https://github.com/jpgtzg/hackmty-2024)
+- FRIDA Framework (provided by SoftTek)
+- OpenAI API
+- AWS API Gateway
+- Flask
+- OpenVINO
+- OpenCV
 
-When you're ready, run:
+### [Front-end](https://github.com/rpribau/hackmty-2024)
+- React Native
 
-```bash
-npm run reset-project
-```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
